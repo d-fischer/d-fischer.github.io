@@ -14,9 +14,9 @@
 		<span style="color:#cb7832">if</span> (follow) {
 			<span style="color:#cb7832">const</span> currentTimestamp = <span style="color:#e0c46c">Date</span>.now();
 			<span style="color:#cb7832">const</span> followStartTimestamp = follow.followDate.getTime();
-			chatClient.sendPrivmsg(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You have been following for <span style="color:#e0c46c">${secondsToDuration((currentTimestamp - followStartTimestamp) / 1000)}</span>!`</span>);
+			chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You have been following for <span style="color:#e0c46c">${secondsToDuration((currentTimestamp - followStartTimestamp) / 1000)}</span>!`</span>);
 		} <span style="color:#cb7832">else</span> {
-			chatClient.sendPrivmsg(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You are not following!`</span>);
+			chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You are not following!`</span>);
 		}
 	}
 });
