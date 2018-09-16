@@ -23,7 +23,7 @@
 });
 </code></pre><p>Then you can listen to any topic you want:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">const</span> accessToken = <span style="color:#6a8759">&#x27;abc123&#x27;</span>;
 <span style="color:#cb7832">await</span> client.listen(<span style="color:#6a8759">`channel-subscribe-events-v1.<span style="color:#e0c46c">${userId}</span>`</span>, accessToken);
-</code></pre><p>Later, you can stop listening to any events you&#x27;re listening to again:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">await</span> client.unlisten(<span style="color:#6a8759">`channel-subscribe-events-v1.<span style="color:#e0c46c">${userId}</span>`</span>);
+</code></pre><p>Please note that if you don&#x27;t listen to any topic in the first 15 seconds after connecting, Twitch will close the connection.</p><p>Later, you can stop listening to any events you&#x27;re listening to again:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">await</span> client.unlisten(<span style="color:#6a8759">`channel-subscribe-events-v1.<span style="color:#e0c46c">${userId}</span>`</span>);
 </code></pre></div></main></div></div></div>
 </body>
 </html>
