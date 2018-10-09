@@ -16,10 +16,10 @@
 }
 </code></pre><p>We make extensive use of convenience methods that fetch related resources, so this can also be written a bit easier:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">async</span> <span><span style="color:#cb7832">function</span> <span>isStreamLive</span>(<span style="color:#b9b9b9">userName: <span style="color:#e0c46c">string</span></span>) </span>{
 	<span style="color:#cb7832">const</span> user = <span style="color:#cb7832">await</span> twitchClient.users.getUserByName(userName);
-    <span style="color:#cb7832">if</span> (!user) {
-        <span style="color:#cb7832">return</span> <span style="color:#6896ba">false</span>;
-    }
-    <span style="color:#cb7832">return</span> <span style="color:#cb7832">await</span> user.getStream() !== <span style="color:#6896ba">null</span>;
+	<span style="color:#cb7832">if</span> (!user) {
+		<span style="color:#cb7832">return</span> <span style="color:#6896ba">false</span>;
+	}
+	<span style="color:#cb7832">return</span> <span style="color:#cb7832">await</span> user.getStream() !== <span style="color:#6896ba">null</span>;
 }
 </code></pre></div></main></div></div></div>
 </body>
