@@ -106,7 +106,7 @@
 	<span style="color:#cb7832">return</span> <span style="color:#cb7832">await</span> user.getStream() !== <span style="color:#6896ba">null</span>;
 }
 </code></pre><p>In Helix, some resources are paginated using a cursor. To faciliate easy pagination, the results of these calls are wrapped in a <a href="/twitch@next/reference/classes/HelixPaginatedRequest.html">HelixPaginatedRequest</a> object. There are multiple ways to use this object to get your results.</p><ul><li>Using <code>getNext()</code>:</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">async</span> <span><span style="color:#cb7832">function</span> <span>getAllClipsForBroadcaster</span>(<span style="color:#b9b9b9">userId: <span style="color:#e0c46c">string</span></span>) </span>{
-	<span style="color:#cb7832">const</span> request = twitchClient.helix.getClipsForBroadcaster(userId);
+	<span style="color:#cb7832">const</span> request = twitchClient.helix.clips.getClipsForBroadcaster(userId);
 	<span style="color:#cb7832">let</span> page: HelixClip[];
 	<span style="color:#cb7832">const</span> result: HelixClip[] = [];
 
@@ -117,12 +117,12 @@
 	<span style="color:#cb7832">return</span> result;
 }
 </code></pre><ul><li>Using <code>getAll()</code>:</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">async</span> <span><span style="color:#cb7832">function</span> <span>getAllClipsForBroadcaster</span>(<span style="color:#b9b9b9">userId: <span style="color:#e0c46c">string</span></span>) </span>{
-	<span style="color:#cb7832">const</span> request = twitchClient.helix.getClipsForBroadcaster(userId);
+	<span style="color:#cb7832">const</span> request = twitchClient.helix.clips.getClipsForBroadcaster(userId);
 
 	<span style="color:#cb7832">return</span> request.getAll();
 }
 </code></pre><ul><li>Using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of"><code>for await ... of</code></a> loop:</li></ul><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">async</span> <span><span style="color:#cb7832">function</span> <span>findClipFromBroadcasterWithTitle</span>(<span style="color:#b9b9b9">userId: <span style="color:#e0c46c">string</span>, searchTerm: <span style="color:#e0c46c">string</span></span>) </span>{
-	<span style="color:#cb7832">for</span> <span style="color:#cb7832">await</span> (<span style="color:#cb7832">const</span> clip of twitchClient.helix.getClipsForBroadcaster(userId)) {
+	<span style="color:#cb7832">for</span> <span style="color:#cb7832">await</span> (<span style="color:#cb7832">const</span> clip of twitchClient.helix.clips.getClipsForBroadcaster(userId)) {
 		<span style="color:#cb7832">if</span> (clip.title.includes(searchTerm)) {
 			<span style="color:#cb7832">return</span> clip;
 		}
