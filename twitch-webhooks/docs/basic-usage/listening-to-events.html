@@ -97,7 +97,7 @@
 listener.listen();
 </code></pre><p>After that, you can subscribe to all supported events using this listener:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { HelixStream } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
 
-<span style="color:#cb7832">const</span> subscription = <span style="color:#cb7832">await</span> listener.listenToStreamChanges(userId, <span style="color:#cb7832">async</span> (stream?: HelixStream) =&gt; {
+<span style="color:#cb7832">const</span> subscription = <span style="color:#cb7832">await</span> listener.subscribeToStreamChanges(userId, <span style="color:#cb7832">async</span> (stream?: HelixStream) =&gt; {
 	<span style="color:#cb7832">if</span> (stream) {
 		<span style="color:#e0c46c">console</span>.log(<span style="color:#6a8759">`<span style="color:#e0c46c">${stream.userDisplayName}</span> just went live with title: <span style="color:#e0c46c">${stream.title}</span>`</span>);
 	} <span style="color:#cb7832">else</span> {
