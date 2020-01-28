@@ -682,11 +682,8 @@ chatClient.onSubGift(<span class="hljs-function">(<span style="color:#b9b9b9">ch
         }
     }</span>);
 
-    <span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(<span style="color:#b9b9b9">twitchClient</span>);
-
+    <span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(<span style="color:#b9b9b9">twitchClient, { channels: [&#x27;satisfiedpear&#x27;] }</span>);
     <span style="color:#cb7832">await</span> chatClient.connect(<span style="color:#b9b9b9"></span>);
-    <span style="color:#cb7832">await</span> chatClient.waitForRegistration(<span style="color:#b9b9b9"></span>);
-    <span style="color:#cb7832">await</span> chatClient.join(<span style="color:#b9b9b9">&#x27;satisfiedpear&#x27;</span>);
 
     chatClient.onPrivmsg(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user, message</span>) =&gt; {
         <span style="color:#cb7832">if</span> (<span style="color:#b9b9b9">message === &#x27;!ping&#x27;</span>) {
