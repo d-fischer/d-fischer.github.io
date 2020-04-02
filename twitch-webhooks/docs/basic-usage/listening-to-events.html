@@ -590,7 +590,7 @@
 listener.listen();
 </code></pre><p>Please note that the port you supply needs to be <strong>available from the outside</strong>.
 If you are testing locally, you may need to forward the port to your development machine.
-A very helpful tool for that is <a class="jss15" href="/twitch-webhooks/docs/basic-usage/listening-to-events.html">ngrok</a>.</p><p>When your listener is set up, you can subscribe to all supported events using this listener:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { HelixStream } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
+A very helpful tool for that is <a class="jss15" href="/twitch-webhooks/docs/special-hosting/ngrok.html">ngrok</a>.</p><p>When your listener is set up, you can subscribe to all supported events using this listener:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { HelixStream } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
 
 <span style="color:#cb7832">const</span> subscription = <span style="color:#cb7832">await</span> listener.subscribeToStreamChanges(userId, <span style="color:#cb7832">async</span> (stream?: HelixStream) =&gt; {
 	<span style="color:#cb7832">if</span> (stream) {
