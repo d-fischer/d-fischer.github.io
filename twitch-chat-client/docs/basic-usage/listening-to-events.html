@@ -591,15 +591,15 @@
 		<span style="color:#cb7832">if</span> (follow) {
 			<span style="color:#cb7832">const</span> currentTimestamp = <span style="color:#e0c46c">Date</span>.now();
 			<span style="color:#cb7832">const</span> followStartTimestamp = follow.followDate.getTime();
-			chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You have been following for <span style="color:#e0c46c">${secondsToDuration((currentTimestamp - followStartTimestamp) / 1000)}</span>!`</span>);
-		} <span style="color:#cb7832">else</span> {
-			chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You are not following!`</span>);
+			chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> You have been following for <span style="color:#e0c46c">${secondsToDuration((currentTimestamp - followStartTimestamp) <span style="color:#6896ba">/ 1000)}!`);
+		} else {
+			chatClient.say(channel, `@${user} You are not following!`);
 		}
 	}
 });
 
-<span style="color:#7f7f7f">// later, when you don&#x27;t need this command anymore:</span>
+/</span><span style="color:#6896ba">/ later, when you don&#x27;t need this command anymore:
 chatClient.removeListener(followAgeListener);
-</code></pre><p>A list of all chat events can be found in the <a class="jss15" href="/twitch-chat-client/reference/classes/ChatClient.html">ChatClient</a> documentation.</p></div></main></div></div></div>
+</span></span></span></code></pre><p>A list of all chat events can be found in the <a class="jss15" href="/twitch-chat-client/reference/classes/ChatClient.html">ChatClient</a> documentation.</p></div></main></div></div></div>
 </body>
 </html>
