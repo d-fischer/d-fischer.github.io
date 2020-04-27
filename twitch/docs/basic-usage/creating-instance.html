@@ -598,7 +598,7 @@
 <span style="color:#cb7832">const</span> twitchClient = TwitchClient.withCredentials(clientId, accessToken, <span style="color:#6896ba">undefined</span>, {clientSecret, refreshToken, onRefresh: <span class="hljs-function">(<span style="color:#b9b9b9">token: AccessToken</span>) =&gt;</span> {
 	<span style="color:#7f7f7f">// do things with the new token data, e.g. save them in your database</span>
 }});
-</code></pre><p>There&#x27;s a more elaborated example on how to make auto refreshing work in the <a class="jss15" href="/twitch-chat-client/docs/examples/basic-bot.html.html">twitch-chat-client documentation</a>.</p><p>If you don&#x27;t need any client scopes, you may also create the client using client credentials:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> TwitchClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
+</code></pre><p>There&#x27;s a more elaborated example on how to make auto refreshing work in the <a class="jss15" href="/twitch-chat-client/docs/examples/basic-bot.html">twitch-chat-client documentation</a>.</p><p>If you don&#x27;t need any client scopes, you may also create the client using client credentials:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> TwitchClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
 
 <span style="color:#cb7832">const</span> clientId = <span style="color:#6a8759">&#x27;123abc&#x27;</span>;
 <span style="color:#cb7832">const</span> clientSecret = <span style="color:#6a8759">&#x27;foobar&#x27;</span>;
