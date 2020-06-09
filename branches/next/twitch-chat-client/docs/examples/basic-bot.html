@@ -609,7 +609,7 @@
 <span style="color:#cb7832">const</span> accessToken = <span style="color:#6a8759">&#x27;0123456789abcdefghijABCDEFGHIJ&#x27;</span>;
 <span style="color:#cb7832">const</span> twitchClient = TwitchClient.withCredentials(clientId, accessToken);
 </code></pre><h2>4. Connect to chat</h2><p>Using the <code>TwitchClient</code> instance we just created, we can easily create a <code>ChatClient</code> instance and connect to the chat server.
-The given channels will automatically be joined after connecting.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(twitchClient, { channels: [<span style="color:#6a8759">&#x27;satisfiedpear&#x27;</span>] });
+The given channels will automatically be joined after connecting.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">const</span> chatClient = ChatClient.forTwitchClient(twitchClient, { channels: [<span style="color:#6a8759">&#x27;satisfiedpear&#x27;</span>] });
 <span style="color:#cb7832">await</span> chatClient.connect();
 </code></pre><p>Now you can run your code and see your bot sitting in your channel. But we want it to do something!</p><h2>5. Listen and react to events</h2><p>Fortunately, reacting to things is easy. To listen to chat messages, just use the <code>onPrivmsg</code> method. As an example, we implement a few basic commands here:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>chatClient.onPrivmsg(<span class="hljs-function">(<span style="color:#b9b9b9">channel, user, message</span>) =&gt;</span> {
 	<span style="color:#cb7832">if</span> (message === <span style="color:#6a8759">&#x27;!ping&#x27;</span>) {
@@ -682,7 +682,7 @@ chatClient.onSubGift(<span class="hljs-function">(<span style="color:#b9b9b9">ch
         }
     }</span>);
 
-    <span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(<span style="color:#b9b9b9">twitchClient, { channels: [&#x27;satisfiedpear&#x27;] }</span>);
+    <span style="color:#cb7832">const</span> chatClient = ChatClient.forTwitchClient(<span style="color:#b9b9b9">twitchClient, { channels: [&#x27;satisfiedpear&#x27;] }</span>);
     <span style="color:#cb7832">await</span> chatClient.connect(<span style="color:#b9b9b9"></span>);
 
     chatClient.onPrivmsg(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user, message</span>) =&gt; {
