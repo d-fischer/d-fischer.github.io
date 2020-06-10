@@ -602,9 +602,11 @@
 }
 </code></pre><p>Write down the <code>access_token</code> and <code>refresh_token</code> properties of the response body. These are important for all the other requests you&#x27;re sending to Twitch!</p><h2>3. Create a <code>TwitchClient</code> instance</h2><p>Now you can finally start writing code! First, import all the classes you&#x27;re gonna need from <code>twitch</code> and <code>twitch-chat-client</code>.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> TwitchClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
 <span style="color:#cb7832">import</span> ChatClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch-chat-client&#x27;</span>;
-</code></pre><p>Now, as long as <a class="jss15" href="https://github.com/tc39/proposal-top-level-await">top-level await</a> has not landed in popular runtimes, you need to work around that by placing your main routine inside an immediately executed inline function expression.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>(<span style="color:#cb7832">async</span> () =&gt; {
+</code></pre><p>Now, as long as <a class="jss15" href="https://github.com/tc39/proposal-top-level-await">top-level await</a> has not landed in popular runtimes, you need to work around that by placing your main routine inside an async function and running it.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">async</span> <span class="hljs-function"><span style="color:#cb7832">function</span> <span class="hljs-title">main</span>(<span style="color:#b9b9b9"></span>) </span>{
 	<span style="color:#7f7f7f">// code goes here</span>
-})();
+}
+
+main();
 </code></pre><p>All the following code needs to be inside this function (or at least called from inside it) so we can use <code>await</code> and still avoid race conditions.</p><p>Now, we can construct a <code>TwitchClient</code> instance:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">const</span> clientId = <span style="color:#6a8759">&#x27;uo6dggojyb8d6soh92zknwmi5ej1q2&#x27;</span>;
 <span style="color:#cb7832">const</span> accessToken = <span style="color:#6a8759">&#x27;0123456789abcdefghijABCDEFGHIJ&#x27;</span>;
 <span style="color:#cb7832">const</span> twitchClient = TwitchClient.withCredentials(clientId, accessToken);
@@ -642,8 +644,8 @@ chatClient.onSubGift(<span class="hljs-function">(<span style="color:#b9b9b9">ch
 	<span style="color:#6a8759">&quot;refreshToken&quot;</span>: <span style="color:#6a8759">&quot;eyJfaWQmNzMtNGCJ9%6VFV5LNrZFUj8oU231/3Aj&quot;</span>,
 	<span style="color:#6a8759">&quot;expiryTimestamp&quot;</span>: <span style="color:#6896ba">0</span>
 }
-</code></pre><p>I also added a new property called <code>expiryTimestamp</code>. It will save the expiry time of the access token so the client can determine when to refresh the token without making a failing call first. If you didn&#x27;t calculate the expiry timestamp after sending the manual code request (you probably didn&#x27;t - I wouldn&#x27;t either), you can initialize it to zero to always make a refresh call in the beginning.</p><p>Now, we can parse this JSON file on startup, load the tokens from it and when the tokens refresh, save them back into the same file. For the file I/O, I prefer to use the <code>fs-extra</code> package because it provides a promisified interface to the filesystem, unlike the <code>fs</code> package shipped with Node, which still uses callbacks.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#7f7f7f">// add to import block before async function</span>
-<span style="color:#cb7832">import</span> * <span style="color:#cb7832">as</span> fs <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;fs-extra&#x27;</span>;
+</code></pre><p>I also added a new property called <code>expiryTimestamp</code>. It will save the expiry time of the access token so the client can determine when to refresh the token without making a failing call first. If you didn&#x27;t calculate the expiry timestamp after sending the manual code request (you probably didn&#x27;t - I wouldn&#x27;t either), you can initialize it to zero to always make a refresh call in the beginning.</p><p>Now, we can parse this JSON file on startup, load the tokens from it and when the tokens refresh, save them back into the same file.</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#7f7f7f">// add to import block before async function</span>
+<span style="color:#cb7832">import</span> { promises <span style="color:#cb7832">as</span> fs } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;fs&#x27;</span>;
 
 <span style="color:#7f7f7f">// inside the async function again</span>
 <span style="color:#cb7832">const</span> tokenData = <span style="color:#e0c46c">JSON</span>.parse(<span style="color:#cb7832">await</span> fs.readFile(<span style="color:#6a8759">&#x27;./tokens.json&#x27;</span>));
@@ -662,48 +664,50 @@ chatClient.onSubGift(<span class="hljs-function">(<span style="color:#b9b9b9">ch
     });
 </code></pre><h2>8. ???</h2><p>We&#x27;re done! Your bot should now connect to chat and react to a few basic commands as well as subs, resubs and gift subs. It is able to recover gracefully when crashing.</p><h2>9. Profit!</h2><p>Now you can implement a more elaborated command system, add more events to react to, and much more! All events are documented in the <a class="jss15" href="/twitch-chat-client/reference/classes/ChatClient.html">ChatClient</a> class. And don&#x27;t forget to have fun!</p><p>For reference, here&#x27;s the full code that <em>should</em> be the result of everything we just did:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> TwitchClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
 <span style="color:#cb7832">import</span> ChatClient <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch-chat-client&#x27;</span>;
-<span style="color:#cb7832">import</span> * <span style="color:#cb7832">as</span> fs <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;fs-extra&#x27;</span>;
+<span style="color:#cb7832">import</span> { promises <span style="color:#cb7832">as</span> fs } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;fs&#x27;</span>;
 
-<span class="hljs-function">(<span style="color:#b9b9b9"><span style="color:#cb7832">async</span> (<span style="color:#b9b9b9"></span>) =&gt; {
-    <span style="color:#cb7832">const</span> clientId = &#x27;uo6dggojyb8d6soh92zknwmi5ej1q2&#x27;;
-    <span style="color:#cb7832">const</span> clientSecret = &#x27;nyo51xcdrerl8z9m56w9w6wg&#x27;;
-    <span style="color:#cb7832">const</span> tokenData = <span style="color:#e0c46c">JSON</span>.parse(<span style="color:#b9b9b9"><span style="color:#cb7832">await</span> fs.readFile(<span style="color:#b9b9b9">&#x27;./tokens.json&#x27;, &#x27;UTF-8&#x27;</span>)</span>);
-    <span style="color:#cb7832">const</span> twitchClient = TwitchClient.withCredentials(<span style="color:#b9b9b9">clientId, tokenData.accessToken, <span style="color:#6896ba">undefined</span>, {
+<span style="color:#cb7832">async</span> <span class="hljs-function"><span style="color:#cb7832">function</span> <span class="hljs-title">main</span>(<span style="color:#b9b9b9"></span>) </span>{
+    <span style="color:#cb7832">const</span> clientId = <span style="color:#6a8759">&#x27;uo6dggojyb8d6soh92zknwmi5ej1q2&#x27;</span>;
+    <span style="color:#cb7832">const</span> clientSecret = <span style="color:#6a8759">&#x27;nyo51xcdrerl8z9m56w9w6wg&#x27;</span>;
+    <span style="color:#cb7832">const</span> tokenData = <span style="color:#e0c46c">JSON</span>.parse(<span style="color:#cb7832">await</span> fs.readFile(<span style="color:#6a8759">&#x27;./tokens.json&#x27;</span>, <span style="color:#6a8759">&#x27;UTF-8&#x27;</span>));
+    <span style="color:#cb7832">const</span> twitchClient = TwitchClient.withCredentials(clientId, tokenData.accessToken, <span style="color:#6896ba">undefined</span>, {
         clientSecret,
         refreshToken: tokenData.refreshToken,
-        expiry: tokenData.expiryTimestamp === <span style="color:#6896ba">null</span> ? <span style="color:#6896ba">null</span> : <span style="color:#cb7832">new</span> <span style="color:#e0c46c">Date</span>(<span style="color:#b9b9b9">tokenData.expiryTimestamp</span>),
-        onRefresh: <span style="color:#cb7832">async</span> (<span style="color:#b9b9b9">{ accessToken, refreshToken, expiryDate }</span>) =&gt; {
+        expiry: tokenData.expiryTimestamp === <span style="color:#6896ba">null</span> ? <span style="color:#6896ba">null</span> : <span style="color:#cb7832">new</span> <span style="color:#e0c46c">Date</span>(tokenData.expiryTimestamp),
+        onRefresh: <span style="color:#cb7832">async</span> ({ accessToken, refreshToken, expiryDate }) =&gt; {
             <span style="color:#cb7832">const</span> newTokenData = {
                 accessToken,
                 refreshToken,
-                expiryTimestamp: expiryDate === <span style="color:#6896ba">null</span> ? <span style="color:#6896ba">null</span> : expiryDate.getTime(<span style="color:#b9b9b9"></span>)
+                expiryTimestamp: expiryDate === <span style="color:#6896ba">null</span> ? <span style="color:#6896ba">null</span> : expiryDate.getTime()
             };
-            <span style="color:#cb7832">await</span> fs.writeFile(<span style="color:#b9b9b9">&#x27;./tokens.json&#x27;, <span style="color:#e0c46c">JSON</span>.stringify(<span style="color:#b9b9b9">newTokenData, <span style="color:#6896ba">null</span>, 4</span>), &#x27;UTF-8&#x27;</span>)
+            <span style="color:#cb7832">await</span> fs.writeFile(<span style="color:#6a8759">&#x27;./tokens.json&#x27;</span>, <span style="color:#e0c46c">JSON</span>.stringify(newTokenData, <span style="color:#6896ba">null</span>, <span style="color:#6896ba">4</span>), <span style="color:#6a8759">&#x27;UTF-8&#x27;</span>)
         }
-    }</span>);
+    });
 
-    <span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(<span style="color:#b9b9b9">twitchClient, { channels: [&#x27;satisfiedpear&#x27;] }</span>);
-    <span style="color:#cb7832">await</span> chatClient.connect(<span style="color:#b9b9b9"></span>);
+    <span style="color:#cb7832">const</span> chatClient = <span style="color:#cb7832">await</span> ChatClient.forTwitchClient(twitchClient, { channels: [<span style="color:#6a8759">&#x27;satisfiedpear&#x27;</span>] });
+    <span style="color:#cb7832">await</span> chatClient.connect();
 
-    chatClient.onPrivmsg(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user, message</span>) =&gt; {
-        <span style="color:#cb7832">if</span> (<span style="color:#b9b9b9">message === &#x27;!ping&#x27;</span>) {
-            chatClient.say(<span style="color:#b9b9b9">channel, &#x27;Pong!&#x27;</span>);
-        } <span style="color:#cb7832">else</span> <span style="color:#cb7832">if</span> (<span style="color:#b9b9b9">message === &#x27;!dice&#x27;</span>) {
-            <span style="color:#cb7832">const</span> diceRoll = <span style="color:#e0c46c">Math</span>.floor(<span style="color:#b9b9b9"><span style="color:#e0c46c">Math</span>.random(<span style="color:#b9b9b9"></span>) * 6</span>) + 1;
-            chatClient.say(<span style="color:#b9b9b9">channel, `@${user} rolled a ${diceRoll}`</span>)
+    chatClient.onPrivmsg(<span class="hljs-function">(<span style="color:#b9b9b9">channel, user, message</span>) =&gt;</span> {
+        <span style="color:#cb7832">if</span> (message === <span style="color:#6a8759">&#x27;!ping&#x27;</span>) {
+            chatClient.say(channel, <span style="color:#6a8759">&#x27;Pong!&#x27;</span>);
+        } <span style="color:#cb7832">else</span> <span style="color:#cb7832">if</span> (message === <span style="color:#6a8759">&#x27;!dice&#x27;</span>) {
+            <span style="color:#cb7832">const</span> diceRoll = <span style="color:#e0c46c">Math</span>.floor(<span style="color:#e0c46c">Math</span>.random() * <span style="color:#6896ba">6</span>) + <span style="color:#6896ba">1</span>;
+            chatClient.say(channel, <span style="color:#6a8759">`@<span style="color:#e0c46c">${user}</span> rolled a <span style="color:#e0c46c">${diceRoll}</span>`</span>)
         }
-    }</span>);
+    });
 
-    chatClient.onSub(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user</span>) =&gt; {
-        chatClient.say(<span style="color:#b9b9b9">channel, `Thanks to @${user} <span style="color:#cb7832">for</span> subscribing to the channel!`</span>);
-    }</span>);
-    chatClient.onResub(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user, subInfo</span>) =&gt; {
-        chatClient.say(<span style="color:#b9b9b9">channel, `Thanks to @${user} <span style="color:#cb7832">for</span> subscribing to the channel <span style="color:#cb7832">for</span> a total of ${subInfo.months} months!`</span>);
-    }</span>);
-    chatClient.onSubGift(<span style="color:#b9b9b9">(<span style="color:#b9b9b9">channel, user, subInfo</span>) =&gt; {
-        chatClient.say(<span style="color:#b9b9b9">channel, `Thanks to ${subInfo.gifter} <span style="color:#cb7832">for</span> gifting a subscription to ${user}!`</span>);
-    }</span>);
-}</span>)<span style="color:#b9b9b9">()</span>;
-</span></code></pre></div></main></div></div></div>
+    chatClient.onSub(<span class="hljs-function">(<span style="color:#b9b9b9">channel, user</span>) =&gt;</span> {
+        chatClient.say(channel, <span style="color:#6a8759">`Thanks to @<span style="color:#e0c46c">${user}</span> for subscribing to the channel!`</span>);
+    });
+    chatClient.onResub(<span class="hljs-function">(<span style="color:#b9b9b9">channel, user, subInfo</span>) =&gt;</span> {
+        chatClient.say(channel, <span style="color:#6a8759">`Thanks to @<span style="color:#e0c46c">${user}</span> for subscribing to the channel for a total of <span style="color:#e0c46c">${subInfo.months}</span> months!`</span>);
+    });
+    chatClient.onSubGift(<span class="hljs-function">(<span style="color:#b9b9b9">channel, user, subInfo</span>) =&gt;</span> {
+        chatClient.say(channel, <span style="color:#6a8759">`Thanks to <span style="color:#e0c46c">${subInfo.gifter}</span> for gifting a subscription to <span style="color:#e0c46c">${user}</span>!`</span>);
+    });
+}
+
+main();
+</code></pre></div></main></div></div></div>
 </body>
 </html>
