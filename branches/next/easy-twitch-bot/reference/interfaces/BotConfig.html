@@ -7,9 +7,15 @@
     <style>
     	@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-		html, body, #root {
+		html {
+			height: 100%;
+		}
+
+		html, body, #app-root {
 			width: 100%;
-			min-height: 100%;
+			display: flex;
+			flex: 1;
+			flex-direction: column;
 		}
 		
 		body {
@@ -613,9 +619,9 @@
   margin-bottom: 2em;
 }
 .jss4 {
+  flex: 1;
   width: 100%;
   display: flex;
-  min-height: 100%;
   flex-direction: row;
 }
 .jss5 {
