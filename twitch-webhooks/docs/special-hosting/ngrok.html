@@ -7,9 +7,15 @@
     <style>
     	@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
-		html, body, #root {
+		html {
+			height: 100%;
+		}
+
+		html, body, #app-root {
 			width: 100%;
-			min-height: 100%;
+			display: flex;
+			flex: 1;
+			flex-direction: column;
 		}
 		
 		body {
@@ -484,25 +490,25 @@
   display: block;
 }
 .jss10:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 16px;
 }
 .jss11 {
   height: 1em;
   margin: 0;
-  padding: .25em .5em .25em .75em;
+  padding: 4px 8px 4px 12px;
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1em;
   text-transform: uppercase;
 }
 .jss12 > a {
-  padding-left: 1.25em;
+  padding-left: 20px;
 }
 .jss8 {
   color: #b9b9b9;
   height: 1em;
   display: block;
-  padding: .5em;
+  padding: 8px;
   overflow: hidden;
   transition: .3s background-color ease-in-out, .3s border-left-color ease-in-out;
   border-left: .25em solid transparent;
@@ -522,7 +528,7 @@
 }
 .jss13 {
   color: #b9b9b9;
-  padding: 1em;
+  padding: 16px;
   position: relative;
   border-bottom: 1px solid #444;
   background-color: #242424;
@@ -537,7 +543,7 @@
   margin: 0;
 }
 .jss14 {
-  padding: 1em;
+  padding: 16px;
 }
 .jss14 h2 {
   margin: 0;
@@ -548,9 +554,9 @@
   text-decoration: none;
 }
 .jss4 {
+  flex: 1;
   width: 100%;
   display: flex;
-  min-height: 100%;
   flex-direction: row;
 }
 .jss5 {
@@ -584,7 +590,7 @@
 }</style>
 </head>
 <body>
-<div id="app-root"><div class="jss1"><a class="jss2" href="/easy-twitch-bot/">easy-twitch-bot</a><a class="jss2" href="/twitch/">twitch</a><a class="jss2" href="/twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/twitch-pubsub-client/">twitch-pubsub-client</a><a aria-current="page" class="jss2 jss3" href="/twitch-webhooks/">twitch-webhooks</a></div><div class="jss4"><div class="jss7 jss5"><a class="jss8" href="/twitch-webhooks/">Welcome</a><div class="jss10"><h2 class="jss11">Basic usage</h2><div class="jss12"><a class="jss8" title="Getting started" href="/twitch-webhooks/docs/basic-usage/getting-started.html">Getting started</a><a class="jss8" title="Listening to events" href="/twitch-webhooks/docs/basic-usage/listening-to-events.html">Listening to events</a></div></div><div class="jss10"><h2 class="jss11">Special hosting</h2><div class="jss12"><a aria-current="page" class="jss8 jss9" title="Testing locally using ngrok" href="/twitch-webhooks/docs/special-hosting/ngrok.html">Testing locally using ngrok</a></div></div><div class="jss10"><h2 class="jss11">Classes</h2><div class="jss12"><a class="jss8" title="BanEventSubscription" href="/twitch-webhooks/reference/classes/BanEventSubscription.html">BanEventSubscription</a><a class="jss8" title="ExtensionTransactionSubscription" href="/twitch-webhooks/reference/classes/ExtensionTransactionSubscription.html">ExtensionTransactionSubscription</a><a class="jss8" title="FollowsFromUserSubscription" href="/twitch-webhooks/reference/classes/FollowsFromUserSubscription.html">FollowsFromUserSubscription</a><a class="jss8" title="FollowsToUserSubscription" href="/twitch-webhooks/reference/classes/FollowsToUserSubscription.html">FollowsToUserSubscription</a><a class="jss8" title="ModeratorEventSubscription" href="/twitch-webhooks/reference/classes/ModeratorEventSubscription.html">ModeratorEventSubscription</a><a class="jss8" title="StreamChangeSubscription" href="/twitch-webhooks/reference/classes/StreamChangeSubscription.html">StreamChangeSubscription</a><a class="jss8" title="Subscription" href="/twitch-webhooks/reference/classes/Subscription.html">Subscription</a><a class="jss8" title="SubscriptionEventSubscription" href="/twitch-webhooks/reference/classes/SubscriptionEventSubscription.html">SubscriptionEventSubscription</a><a class="jss8" title="UserChangeSubscription" href="/twitch-webhooks/reference/classes/UserChangeSubscription.html">UserChangeSubscription</a><a class="jss8" title="WebHookListener" href="/twitch-webhooks/reference/classes/WebHookListener.html">WebHookListener</a></div></div><div class="jss10"><h2 class="jss11">Interfaces</h2><div class="jss12"><a class="jss8" title="WebHookListenerCertificateConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerCertificateConfig.html">WebHookListenerCertificateConfig</a><a class="jss8" title="WebHookListenerComputedConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerComputedConfig.html">WebHookListenerComputedConfig</a><a class="jss8" title="WebHookListenerConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerConfig.html">WebHookListenerConfig</a><a class="jss8" title="WebHookListenerReverseProxyConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerReverseProxyConfig.html">WebHookListenerReverseProxyConfig</a></div></div></div><div class="jss6"><main><div class="jss13"><h1>Testing locally using ngrok</h1></div><div class="jss14"><p><code>ngrok</code> is helpful for local testing when you don&#x27;t want to expose your machine to traffic from outside directly. It also offers SSL, which is required for testing authenticated WebHook endpoints.</p><h2>1. Installing ngrok</h2><p>Download and install ngrok from their <a class="jss15" href="https://ngrok.com/download">download page</a>.</p><h2>2. Running ngrok</h2><p>Run the following command (if ngrok is not in the current directory, adjust its path accordingly):</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>./ngrok http <span style="color:#6896ba">8090</span>
+<div id="app-root"><div class="jss1"><a class="jss2" href="/easy-twitch-bot/">easy-twitch-bot</a><a class="jss2" href="/twitch/">twitch</a><a class="jss2" href="/twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/twitch-pubsub-client/">twitch-pubsub-client</a><a aria-current="page" class="jss2 jss3" href="/twitch-webhooks/">twitch-webhooks</a><a class="jss2" href="/twitch-webhooks-ngrok/">twitch-webhooks-ngrok</a></div><div class="jss4"><div class="jss7 jss5"><a class="jss8" href="/twitch-webhooks/">Welcome</a><div class="jss10"><h2 class="jss11">Classes</h2><div class="jss12"><a class="jss8" title="ConnectionAdapter" href="/twitch-webhooks/reference/classes/ConnectionAdapter.html">ConnectionAdapter</a><a class="jss8" title="EnvPortAdapter" href="/twitch-webhooks/reference/classes/EnvPortAdapter.html">EnvPortAdapter</a><a class="jss8" title="LegacyAdapter" href="/twitch-webhooks/reference/classes/LegacyAdapter.html">LegacyAdapter</a><a class="jss8" title="ReverseProxyAdapter" href="/twitch-webhooks/reference/classes/ReverseProxyAdapter.html">ReverseProxyAdapter</a><a class="jss8" title="SimpleAdapter" href="/twitch-webhooks/reference/classes/SimpleAdapter.html">SimpleAdapter</a><a class="jss8" title="Subscription" href="/twitch-webhooks/reference/classes/Subscription.html">Subscription</a><a class="jss8" title="WebHookListener" href="/twitch-webhooks/reference/classes/WebHookListener.html">WebHookListener</a></div></div><div class="jss10"><h2 class="jss11">Interfaces</h2><div class="jss12"><a class="jss8" title="CommonConnectionAdapterConfig" href="/twitch-webhooks/reference/interfaces/CommonConnectionAdapterConfig.html">CommonConnectionAdapterConfig</a><a class="jss8" title="ConnectCompatibleApp" href="/twitch-webhooks/reference/interfaces/ConnectCompatibleApp.html">ConnectCompatibleApp</a><a class="jss8" title="EnvPortAdapterConfig" href="/twitch-webhooks/reference/interfaces/EnvPortAdapterConfig.html">EnvPortAdapterConfig</a><a class="jss8" title="ReverseProxyAdapterConfig" href="/twitch-webhooks/reference/interfaces/ReverseProxyAdapterConfig.html">ReverseProxyAdapterConfig</a><a class="jss8" title="SimpleAdapterConfig" href="/twitch-webhooks/reference/interfaces/SimpleAdapterConfig.html">SimpleAdapterConfig</a><a class="jss8" title="WebHookConfig" href="/twitch-webhooks/reference/interfaces/WebHookConfig.html">WebHookConfig</a><a class="jss8" title="WebHookListenerCertificateConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerCertificateConfig.html">WebHookListenerCertificateConfig</a><a class="jss8" title="WebHookListenerConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerConfig.html">WebHookListenerConfig</a><a class="jss8" title="WebHookListenerReverseProxyConfig" href="/twitch-webhooks/reference/interfaces/WebHookListenerReverseProxyConfig.html">WebHookListenerReverseProxyConfig</a></div></div></div><div class="jss6"><main><div class="jss13"><h1>Testing locally using ngrok</h1></div><div class="jss14"><p><code>ngrok</code> is helpful for local testing when you don&#x27;t want to expose your machine to traffic from outside directly. It also offers SSL, which is required for testing authenticated WebHook endpoints.</p><h2>1. Installing ngrok</h2><p>Download and install ngrok from their <a class="jss15" href="https://ngrok.com/download">download page</a>.</p><h2>2. Running ngrok</h2><p>Run the following command (if ngrok is not in the current directory, adjust its path accordingly):</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>./ngrok http <span style="color:#6896ba">8090</span>
 </code></pre><p>If port 8090 is already used on your machine, change the port to anything else. ngrok will not complain, but the next step will.</p><p>If everything went well and you&#x27;re <em>sure</em> that the port you used isn&#x27;t already running something else, copy the URL that&#x27;s shown (without <code>http://</code> or <code>https://</code>).</p><h2>3. Setting up the listener</h2><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">const</span> listener = <span style="color:#cb7832">await</span> WebHookListener.create(client, {
     hostName: <span style="color:#6a8759">&#x27;XXXX.ngrok.io&#x27;</span>,
     port: <span style="color:#6896ba">8090</span>,
