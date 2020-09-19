@@ -481,18 +481,18 @@
 }
 
 	</style>
-    <style id="server-side-styles">.jss7 {
+    <style id="server-side-styles">.jss8 {
   min-height: 100%;
   border-right: 1px solid #444;
 }
-.jss10 {
+.jss11 {
   color: #b9b9b9;
   display: block;
 }
-.jss10:not(:first-child) {
+.jss11:not(:first-child) {
   margin-top: 16px;
 }
-.jss11 {
+.jss12 {
   height: 1em;
   margin: 0;
   padding: 4px 8px 4px 12px;
@@ -501,10 +501,10 @@
   line-height: 1em;
   text-transform: uppercase;
 }
-.jss12 > a {
+.jss13 > a {
   padding-left: 20px;
 }
-.jss8 {
+.jss9 {
   color: #b9b9b9;
   height: 1em;
   display: block;
@@ -516,53 +516,53 @@
   text-overflow: ellipsis;
   text-decoration: none;
 }
-.jss8:hover {
+.jss9:hover {
   background-color: #333333;
 }
-.jss9 {
+.jss10 {
   border-color: #647d0f;
   background-color: #242424;
 }
-.jss9:hover {
+.jss10:hover {
   border-left-color: #88ab14;
 }
-.jss13 {
+.jss14 {
   color: #b9b9b9;
   padding: 16px;
   position: relative;
   border-bottom: 1px solid #444;
   background-color: #242424;
 }
-.jss13 h1 {
+.jss14 h1 {
   margin: 0;
   display: inline;
   font-size: 1.5em;
   font-weight: normal;
 }
-.jss13 p {
-  margin: 0;
-}
-.jss14 {
-  padding: 16px;
-}
-.jss14 h2 {
+.jss14 p {
   margin: 0;
 }
 .jss15 {
+  padding: 16px;
+}
+.jss15 h2 {
+  margin: 0;
+}
+.jss16 {
   color: #949494;
   font-weight: bold;
   text-decoration: none;
 }
-.jss4 {
+.jss5 {
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
-.jss5 {
+.jss6 {
   width: 250px;
 }
-.jss6 {
+.jss7 {
   flex: 1;
 }
 .jss1 {
@@ -587,12 +587,15 @@
 }
 .jss3:hover {
   border-bottom-color: #88ab14;
+}
+.jss4 {
+  flex: 1;
 }</style>
 </head>
 <body>
-<div id="app-root"><div class="jss1"><a aria-current="page" class="jss2 jss3" href="/easy-twitch-bot/">easy-twitch-bot</a><a class="jss2" href="/twitch/">twitch</a><a class="jss2" href="/twitch-api-call/">twitch-api-call</a><a class="jss2" href="/twitch-auth/">twitch-auth</a><a class="jss2" href="/twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/twitch-pubsub-client/">twitch-pubsub-client</a><a class="jss2" href="/twitch-webhooks/">twitch-webhooks</a><a class="jss2" href="/twitch-webhooks-ngrok/">twitch-webhooks-ngrok</a></div><div class="jss4"><div class="jss7 jss5"><a aria-current="page" class="jss8 jss9" href="/easy-twitch-bot/">Welcome</a><div class="jss10"><h2 class="jss11">Classes</h2><div class="jss12"><a class="jss8" title="Bot" href="/easy-twitch-bot/reference/classes/Bot.html">Bot</a><a class="jss8" title="BotCommand" href="/easy-twitch-bot/reference/classes/BotCommand.html">BotCommand</a><a class="jss8" title="BotCommandContext" href="/easy-twitch-bot/reference/classes/BotCommandContext.html">BotCommandContext</a></div></div><div class="jss10"><h2 class="jss11">Interfaces</h2><div class="jss12"><a class="jss8" title="BotCommandMatch" href="/easy-twitch-bot/reference/interfaces/BotCommandMatch.html">BotCommandMatch</a><a class="jss8" title="BotConfig" href="/easy-twitch-bot/reference/interfaces/BotConfig.html">BotConfig</a></div></div></div><div class="jss6"><main><div class="jss13"><h1>Twitch.js - Bot framework</h1></div><div class="jss14"><h1>Twitch.js - Bot framework</h1><p>A simplified framework to get a chat bot running easily.</p><h2>Installation</h2><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>yarn <span style="color:#cb7832">add</span><span class="bash"> easy-twitch-bot</span>
-</code></pre><p>or using npm:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>npm <span style="color:#cb7832">install </span>--save easy-twitch-<span style="color:#cb7832">bot
-</span></code></pre><h2>Example</h2><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { Bot, createBotCommand } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;easy-twitch-bot&#x27;</span>;
+<div id="app-root"><div class="jss1"><a aria-current="page" class="jss2 jss3" href="/easy-twitch-bot/">easy-twitch-bot</a><a class="jss2" href="/twitch/">twitch</a><a class="jss2" href="/twitch-api-call/">twitch-api-call</a><a class="jss2" href="/twitch-auth/">twitch-auth</a><a class="jss2" href="/twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/twitch-pubsub-client/">twitch-pubsub-client</a><a class="jss2" href="/twitch-webhooks/">twitch-webhooks</a><a class="jss2" href="/twitch-webhooks-ngrok/">twitch-webhooks-ngrok</a><div class="jss4"></div><div data-dynamic-component="VersionMenu"></div></div><div class="jss5"><div class="jss8 jss6"><a aria-current="page" class="jss9 jss10" href="/easy-twitch-bot/">Welcome</a><div class="jss11"><h2 class="jss12">Classes</h2><div class="jss13"><a class="jss9" title="Bot" href="/easy-twitch-bot/reference/classes/Bot.html">Bot</a><a class="jss9" title="BotCommand" href="/easy-twitch-bot/reference/classes/BotCommand.html">BotCommand</a><a class="jss9" title="BotCommandContext" href="/easy-twitch-bot/reference/classes/BotCommandContext.html">BotCommandContext</a></div></div><div class="jss11"><h2 class="jss12">Interfaces</h2><div class="jss13"><a class="jss9" title="BotCommandMatch" href="/easy-twitch-bot/reference/interfaces/BotCommandMatch.html">BotCommandMatch</a><a class="jss9" title="BotConfig" href="/easy-twitch-bot/reference/interfaces/BotConfig.html">BotConfig</a></div></div></div><div class="jss7"><main><div class="jss14"><h1>Twitch.js - Bot framework</h1></div><div class="jss15"><h1>Twitch.js - Bot framework</h1><p>A simplified framework to get a chat bot running easily.</p><h2>Installation</h2><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>yarn add easy-twitch-bot
+</code></pre><p>or using npm:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code>npm install --save easy-twitch-bot
+</code></pre><h2>Example</h2><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { Bot, createBotCommand } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;easy-twitch-bot&#x27;</span>;
 Bot.create({
     auth: <span style="color:#6a8759">&#x27;YOURTOKENHERE&#x27;</span>,
     channel: <span style="color:#6a8759">&#x27;satisfiedpear&#x27;</span>,
@@ -604,5 +607,6 @@ Bot.create({
     ]
 });
 </code></pre></div></main></div></div></div>
+<script src="/pe.js"></script>
 </body>
 </html>
