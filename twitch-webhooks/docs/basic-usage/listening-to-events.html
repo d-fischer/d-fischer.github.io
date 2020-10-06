@@ -599,7 +599,7 @@
     hostName: <span style="color:#6a8759">&#x27;example.com&#x27;</span>,
     listenerPort: <span style="color:#6896ba">8090</span>
 }));
-listener.listen();
+<span style="color:#cb7832">await</span> listener.listen();
 </code></pre><p>Please note that the port you supply needs to be <strong>available from the outside</strong>.
 If you are testing locally, you may need to forward the port to your development machine.
 A very helpful tool for that is <a class="jss16" href="/twitch-webhooks/docs/special-hosting/ngrok.html">ngrok</a>.</p><p>When your listener is set up, you can subscribe to all supported events using this listener:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code><span style="color:#cb7832">import</span> { HelixStream } <span style="color:#cb7832">from</span> <span style="color:#6a8759">&#x27;twitch&#x27;</span>;
