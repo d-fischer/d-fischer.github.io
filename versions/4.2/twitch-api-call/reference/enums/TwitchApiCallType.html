@@ -526,6 +526,80 @@
 .jss10:hover {
   border-left-color: #88ab14;
 }
+.jss14 {
+  color: #b9b9b9;
+  padding: 16px;
+  position: relative;
+  border-bottom: 1px solid #444;
+  background-color: #242424;
+}
+.jss14 h1 {
+  margin: 0;
+  display: inline;
+  font-size: 1.5em;
+  font-weight: normal;
+}
+.jss14 p {
+  margin: 0;
+}
+.jss17 {
+  padding: 16px;
+}
+.jss17 h2 {
+  margin: 0;
+}
+.jss16 {
+  color: #949494;
+  font-weight: bold;
+  text-decoration: none;
+}
+.jss26 {
+  border: 1px solid #444;
+  margin: 16px;
+  padding: 16px;
+}
+.jss26 h3, .jss26 h4 {
+  margin: 0;
+}
+.jss15 {
+  color: #647d0f;
+  transition: color .3s ease-in-out;
+  margin-left: 1em;
+}
+.jss15:hover {
+  color: #88ab14;
+}
+.jss22 {
+  list-style-type: none;
+}
+.jss23 {
+  color: #949494;
+  font-size: 12px;
+  text-decoration: none;
+}
+.jss24 {
+  background-color: #cccc70;
+}
+.jss25 {
+  background-color: #cc7070;
+}
+.jss18 {
+  border: 1px solid #444;
+  margin: 16px;
+  display: flex;
+  padding: 16px;
+}
+.jss19 {
+  min-width: 300px;
+}
+.jss20 {
+  margin: 0;
+  margin-bottom: 8px;
+}
+.jss21 {
+  margin: 0;
+  padding-left: 16px;
+}
 .jss5 {
   flex: 1;
   width: 100%;
@@ -566,7 +640,7 @@
 }</style>
 </head>
 <body>
-<div id="app-root"><div class="jss1"><a class="jss2" href="/versions/4.2twitch/">twitch</a><a class="jss2" href="/versions/4.2easy-twitch-bot/">easy-twitch-bot</a><a aria-current="page" class="jss2 jss3" href="/versions/4.2twitch-api-call/">twitch-api-call</a><a class="jss2" href="/versions/4.2twitch-auth/">twitch-auth</a><a class="jss2" href="/versions/4.2twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/versions/4.2twitch-pubsub-client/">twitch-pubsub-client</a><a class="jss2" href="/versions/4.2twitch-webhooks/">twitch-webhooks</a><a class="jss2" href="/versions/4.2twitch-webhooks-ngrok/">twitch-webhooks-ngrok</a><div class="jss4"></div><div data-dynamic-component="VersionMenu"></div></div><div class="jss5"><div class="jss8 jss6"><a class="jss9" href="/versions/4.2twitch-api-call/">Welcome</a><div class="jss11"><h2 class="jss12">Classes</h2><div class="jss13"><a class="jss9" title="HttpStatusCodeError" href="/versions/4.2twitch-api-call/reference/classes/HttpStatusCodeError.html">HttpStatusCodeError</a></div></div><div class="jss11"><h2 class="jss12">Interfaces</h2><div class="jss13"><a class="jss9" title="TwitchApiCallOptions" href="/versions/4.2twitch-api-call/reference/interfaces/TwitchApiCallOptions.html">TwitchApiCallOptions</a></div></div><div class="jss11"><h2 class="jss12">Enums</h2><div class="jss13"><a aria-current="page" class="jss9 jss10" title="TwitchApiCallType" href="/versions/4.2twitch-api-call/reference/enums/TwitchApiCallType.html">TwitchApiCallType</a></div></div></div><div class="jss7"><main></main></div></div></div>
+<div id="app-root"><div class="jss1"><a class="jss2" href="/versions/4.2/twitch/">twitch</a><a class="jss2" href="/versions/4.2/easy-twitch-bot/">easy-twitch-bot</a><a aria-current="page" class="jss2 jss3" href="/versions/4.2/twitch-api-call/">twitch-api-call</a><a class="jss2" href="/versions/4.2/twitch-auth/">twitch-auth</a><a class="jss2" href="/versions/4.2/twitch-chat-client/">twitch-chat-client</a><a class="jss2" href="/versions/4.2/twitch-pubsub-client/">twitch-pubsub-client</a><a class="jss2" href="/versions/4.2/twitch-webhooks/">twitch-webhooks</a><a class="jss2" href="/versions/4.2/twitch-webhooks-ngrok/">twitch-webhooks-ngrok</a><div class="jss4"></div><div data-dynamic-component="VersionMenu"></div></div><div class="jss5"><div class="jss8 jss6"><a class="jss9" href="/versions/4.2/twitch-api-call/">Welcome</a><div class="jss11"><h2 class="jss12">Classes</h2><div class="jss13"><a class="jss9" title="HttpStatusCodeError" href="/versions/4.2/twitch-api-call/reference/classes/HttpStatusCodeError.html">HttpStatusCodeError</a></div></div><div class="jss11"><h2 class="jss12">Interfaces</h2><div class="jss13"><a class="jss9" title="TwitchApiCallOptions" href="/versions/4.2/twitch-api-call/reference/interfaces/TwitchApiCallOptions.html">TwitchApiCallOptions</a></div></div><div class="jss11"><h2 class="jss12">Enums</h2><div class="jss13"><a aria-current="page" class="jss9 jss10" title="TwitchApiCallType" href="/versions/4.2/twitch-api-call/reference/enums/TwitchApiCallType.html">TwitchApiCallType</a></div></div></div><div class="jss7"><main><div class="jss14"><h1>TwitchApiCallType</h1><a class="jss15" href="https://github.com/d-fischer/twitch/blob/support/4.2/packages/twitch-api-call/src/TwitchApiCallOptions.ts#L4" target="_blank" rel="noopener noreferrer" title="Go to the code"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code" class="svg-inline--fa fa-code fa-w-20 fa-lg " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z"></path></svg></a><p>The endpoint to call, i.e. /kraken, /helix or a custom (potentially unsupported) endpoint.</p></div><div class="jss17"><h2>Overview</h2><div class="jss18"><div class="jss19"><h3 class="jss20">Members</h3><ul class="jss21"><li class="jss22"><a class="jss23" href="/versions/4.2/twitch-api-call/reference/enums/TwitchApiCallType.html#Auth">Auth</a></li><li class="jss22"><a class="jss23" href="/versions/4.2/twitch-api-call/reference/enums/TwitchApiCallType.html#Custom">Custom</a></li><li class="jss22"><a class="jss23" href="/versions/4.2/twitch-api-call/reference/enums/TwitchApiCallType.html#Helix">Helix</a></li><li class="jss22"><a class="jss23" href="/versions/4.2/twitch-api-call/reference/enums/TwitchApiCallType.html#Kraken">Kraken</a></li></ul></div></div><h2>Members</h2><div class="jss26"><h3>Auth</h3><p>Call an authentication endpoint.</p></div><div class="jss26"><h3>Custom</h3><p>Call a custom (potentially unsupported) endpoint.</p></div><div class="jss26"><h3>Helix</h3><p>Call a Helix API endpoint.</p></div><div class="jss26"><h3>Kraken</h3><p>Call a Kraken API endpoint.</p></div></div></main></div></div></div>
 <script src="/versions/4.2/pe.js"></script>
 </body>
 </html>
