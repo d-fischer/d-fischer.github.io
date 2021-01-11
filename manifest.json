@@ -1,4 +1,6 @@
 {
-  "versions": [],
+  "versions": [
+    "4.4"
+  ],
   "rootUrl": ""
 }
