@@ -597,8 +597,30 @@
 </span>
 </code></pre><p>or using npm:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code style="white-space:pre"><span>npm install --save twitch-auth-tmi
 </span>
-</code></pre><h2>Documentation</h2><p>A good place to start with this library is the <a class="jss16" href="https://d-fischer.github.io/twitch-auth-tmi">documentation</a>
-which also includes a complete reference of all classes and interfaces, as well as changes and deprecations between major versions.</p><h2>If you&#x27;re getting stuck...</h2><p>You can join the <a class="jss16" href="https://discord.gg/b9ZqMfz">Discord server</a> for support.</p></div></main></div></div></div>
+</code></pre><h2>How to use</h2><p>This package is generally used like <code>tmi.js</code> is normally, with just a single minor change.</p><p>It completely ignores the <code>identity</code> option, and instead takes an <code>authProvider</code> option which takes an
+<a class="jss16" href="https://d-fischer.github.io/twitch-auth/reference/interfaces/AuthProvider.html"><code>AuthProvider</code></a>
+instance that can be used for other <code>twitch</code> packages as well.</p><p>This also offers the additional benefit of being able to refresh tokens internally using
+<a class="jss16" href="https://d-fischer.github.io/twitch-auth/docs/providers/refreshable.html">a refreshable AuthProvider</a>.</p><h3>Example</h3><p>Taken from the <a class="jss16" href="https://www.npmjs.com/package/tmi.js">tmi.js README</a> and adapted for this package:</p><pre style="display:block;overflow-x:auto;padding:0.5em;background:#2b2b2b;color:#bababa"><code class="language-js" style="white-space:pre"><span style="color:#cb7832">const</span><span> tmi = </span><span style="color:#e0c46c">require</span><span>(</span><span style="color:#6a8759">&#x27;twitch-auth-tmi&#x27;</span><span>);
+</span><span></span><span style="color:#cb7832">const</span><span> { StaticAuthProvider } = </span><span style="color:#e0c46c">require</span><span>(</span><span style="color:#6a8759">&#x27;twitch-auth&#x27;</span><span>);
+</span><span></span><span style="color:#cb7832">const</span><span> authProvider = </span><span style="color:#cb7832">new</span><span> StaticAuthProvider(</span><span style="color:#6a8759">&#x27;my-client-id&#x27;</span><span>, </span><span style="color:#6a8759">&#x27;my-bot-token&#x27;</span><span>);
+</span><span></span><span style="color:#cb7832">const</span><span> client = </span><span style="color:#cb7832">new</span><span> tmi.Client({
+</span><span>	</span><span class="hljs-attr">options</span><span>: { </span><span class="hljs-attr">debug</span><span>: </span><span style="color:#6896ba">true</span><span>, </span><span class="hljs-attr">messagesLogLevel</span><span>: </span><span style="color:#6a8759">&#x27;info&#x27;</span><span> },
+</span><span>	</span><span class="hljs-attr">connection</span><span>: {
+</span><span>		</span><span class="hljs-attr">reconnect</span><span>: </span><span style="color:#6896ba">true</span><span>,
+</span><span>		</span><span class="hljs-attr">secure</span><span>: </span><span style="color:#6896ba">true</span><span>
+</span>	},
+<span>	</span><span class="hljs-attr">authProvider</span><span>: authProvider,
+</span><span>	</span><span class="hljs-attr">channels</span><span>: [</span><span style="color:#6a8759">&#x27;my-channel&#x27;</span><span>]
+</span>});
+<span>client.connect().catch(</span><span style="color:#e0c46c">console</span><span>.error);
+</span><span>client.on(</span><span style="color:#6a8759">&#x27;message&#x27;</span><span>, </span><span class="hljs-function">(</span><span class="hljs-function" style="color:#b9b9b9">channel, tags, message, self</span><span class="hljs-function">) =&gt;</span><span> {
+</span><span>	</span><span style="color:#cb7832">if</span><span> (self) </span><span style="color:#cb7832">return</span><span>;
+</span><span>	</span><span style="color:#cb7832">if</span><span> (message.toLowerCase() === </span><span style="color:#6a8759">&#x27;!hello&#x27;</span><span>) {
+</span><span>		client.say(channel, </span><span style="color:#6a8759">`@</span><span style="color:#e0c46c">${tags.username}</span><span style="color:#6a8759">, heya!`</span><span>);
+</span>	}
+<!-- -->});
+<!-- -->
+</code></pre><h2>If you&#x27;re getting stuck...</h2><p>You can join the <a class="jss16" href="https://discord.gg/b9ZqMfz">Discord server</a> for support.</p></div></main></div></div></div>
 <script src="/pe.js"></script>
 </body>
 </html>
